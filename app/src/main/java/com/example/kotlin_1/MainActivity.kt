@@ -257,7 +257,7 @@ fun Action(
     Button(
         onClick  = onClick,
         modifier = modifier,
-        shape    = RoundedCornerShape(8.dp)
+        shape    = RoundedCornerShape(8.dp),
     ) {
         Icon(
             imageVector = Icons.Default.Email,
