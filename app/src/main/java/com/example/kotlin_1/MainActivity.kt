@@ -309,8 +309,18 @@ fun Avatar(
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun ProfilPreview() {
+fun ProfilLightPreview() {
     Kotlin1Theme {
+        Profil(
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ProfilDarkPreview() {
+    Kotlin1Theme(darkTheme = true) {
         Profil(
             modifier = Modifier.padding(16.dp)
         )
