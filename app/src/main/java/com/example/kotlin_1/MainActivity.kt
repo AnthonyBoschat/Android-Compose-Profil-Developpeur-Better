@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,6 +35,11 @@ import androidx.compose.ui.unit.dp
 import com.example.kotlin_1.ui.theme.Kotlin1Theme
 
 // Oui je suis un peu maniaque sur les alignement des paramètres.
+
+data class Project(
+    val name: String,
+    val description: String
+)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +68,11 @@ fun Profil(modifier: Modifier = Modifier) {
         "Conception de bases de données",
         "Git et DevOps (CICD)"
     )
+    val projects: List<Project> = listOf(
+        Project("Google 2", "Un moteur de recherche comme Google, mais plus beua, plus rapide, parceque les ingénieurs de google sont mauvais"),
+        Project("Ariane 6", "Projet qui vise à éviter à nos fusée de se crasher."),
+        Project("Orion", "Une application qui permet de savoir ou se trouve les constellations dans le ciel.")
+    )
 
     ProfilCard(
         name         = "Anthony Boschat",
@@ -69,6 +80,7 @@ fun Profil(modifier: Modifier = Modifier) {
         age          = 32,
         description  = "Développeur full-stack passionné par la compréhension des systèmes, les sciences et l’automatisation. Je conçois et développe des solutions adaptées à vos besoins.",
         skills       = skills,
+        projects = projects,
         email        = "AnthonyBoschat.dev@hotmail.com",
         availability = "Non disponible",
         onContactClick = {
@@ -85,6 +97,7 @@ fun ProfilCard(
     age: Int,
     description: String,
     skills: List<String>,
+    projects : List<Project>,
     email: String,
     availability: String,
     onContactClick: () -> Unit,
@@ -111,11 +124,22 @@ fun ProfilCard(
 
             SectionTitle(text = "Compétences")
 
-            LazyRow() {
+            LazyRow(modifier    = Modifier.padding(bottom = sectionSpace)) {
                 items(skills){ skill ->
                     Skill(
                         sentence = skill,
                         modifier = Modifier.padding(end = 8.dp)
+                    )
+                }
+            }
+
+            SectionTitle(text = "Projets")
+
+            LazyColumn() {
+                items(projects){ project ->
+                    ProjectCard(
+                        project = project,
+                        modifier = Modifier.padding(bottom = 6.dp)
                     )
                 }
             }
@@ -168,6 +192,27 @@ fun ProfilHeader(
             text  = description,
             style = MaterialTheme.typography.bodyMedium
         )
+    }
+}
+
+
+@Composable
+fun ProjectCard(
+    project: Project,
+    modifier: Modifier = Modifier
+){
+    Card(modifier = modifier) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text       = project.name,
+                style      = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text  = project.description,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
     }
 }
 
