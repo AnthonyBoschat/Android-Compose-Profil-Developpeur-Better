@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -265,13 +266,15 @@ fun Information(
     sentence: String,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier) {
-        SectionTitle(text = title)
-        Text(
-            text  = sentence,
-            style = MaterialTheme.typography.bodyMedium
-        )
-    }
+    OutlinedTextField(
+        value         = sentence,
+        onValueChange = {},
+        readOnly      = true,
+        label         = {
+            Text(text = title)
+        },
+        modifier = modifier.fillMaxWidth()
+    )
 }
 
 @Composable
