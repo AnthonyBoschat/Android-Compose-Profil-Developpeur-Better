@@ -31,6 +31,17 @@ Contient le nom du profil, un avatar, une liste de compétences, une liste de pr
 - Icon dans le bouton
 - Material 3 : couleurs personnalisées (rouge sombre), thème clair et sombre
 
+## Liste affichée
+Les compétences sont affichées dans une `LazyRow`, une liste horizontale qu'on fait défiler. Chaque compétence utilise le composable réutilisable `Skill`, qui l'affiche dans une `Card`.
+
+## Choix du thème
+- **Couleurs** : un rouge sombre comme couleur principale, utilisé pour le titre et le bouton.
+- **Typographie** : les styles de `MaterialTheme.typography` (headline, title, body).
+- **Clair / sombre** : une palette pour chaque mode, visibles dans les deux previews.
+
+## Notions du chapitre Compose UI réutilisées
+Composables réutilisables avec paramètres, `Modifier`, padding externe et interne, callback sur le bouton, previews, et accessibilité de base.
+
 ## Explication courte
 
 #### Quels composables avez-vous créés ?
