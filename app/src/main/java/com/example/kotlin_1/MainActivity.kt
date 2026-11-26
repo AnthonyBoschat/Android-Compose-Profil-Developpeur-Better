@@ -230,7 +230,8 @@ fun SectionTitle(
         style           = MaterialTheme.typography.titleSmall,
         fontWeight      = FontWeight.Bold,
         modifier        = modifier.padding(bottom = 8.dp),
-        textDecoration  = TextDecoration.Underline
+        textDecoration  = TextDecoration.Underline,
+        color           = MaterialTheme.colorScheme.secondary
     )
 }
 
