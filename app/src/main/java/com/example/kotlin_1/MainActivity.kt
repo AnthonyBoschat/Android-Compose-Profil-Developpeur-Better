@@ -14,8 +14,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -107,12 +110,16 @@ fun ProfilCard(
 
 
             SectionTitle(text = "Compétences")
-            skills.forEach { skill ->
-                Skill(
-                    sentence = skill,
-                    modifier = Modifier.padding(bottom = 4.dp)
-                )
+
+            LazyRow() {
+                items(skills){ skill ->
+                    Skill(
+                        sentence = skill,
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
+                }
             }
+
 
             Information(
                 title    = "Contact",
@@ -183,11 +190,13 @@ fun Skill(
     sentence: String,
     modifier: Modifier = Modifier
 ) {
-    Text(
-        text     = "• $sentence",
-        style    = MaterialTheme.typography.bodyMedium,
-        modifier = modifier
-    )
+    Card(modifier = modifier) {
+        Text(
+            text     = sentence,
+            style    = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
 }
 
 @Composable
